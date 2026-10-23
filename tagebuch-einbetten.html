@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>NagelNEU Tagebuch einbetten</title>
+<style>
+  body{margin:0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f6f2ee;color:#1d1622}
+  main{max-width:760px;margin:0 auto;padding:32px 16px 80px}
+  h1{font-size:1.6rem;margin:0 0 6px}
+  h2{font-size:1.1rem;margin:28px 0 8px}
+  code{background:#fff;border:1px solid #e3d9d2;border-radius:6px;padding:1px 6px;font-size:.9em}
+  pre{background:#170f1a;color:#f1e9ef;border-radius:12px;padding:16px;overflow:auto;font-size:.82rem;line-height:1.5}
+  .note{background:#fff;border-left:4px solid #ff4f9a;border-radius:8px;padding:12px 14px;margin:14px 0}
+  ol li{margin:6px 0}
+</style>
+</head>
+<body>
+<main>
+  <h1>NagelNEU Tagebuch als Fenster auf deiner Webseite</h1>
+  <p>Mit diesem Baustein öffnet sich das Tagebuch als Fenster über deiner Seite. Deine Besucher können sofort hineinschreiben, Kästchen abhaken und ihren Tag einsprechen. Probier es hier aus:</p>
+
+  <!-- ===================== AB HIER KOPIEREN ===================== -->
+  <button type="button" id="nn-open" style="font:800 1rem system-ui,sans-serif;border:0;border-radius:14px;padding:14px 22px;background:linear-gradient(135deg,#ff4f9a,#ffb3d9);color:#1a0712;cursor:pointer;box-shadow:0 10px 26px -10px rgba(255,79,154,.7)">📖 Mein NagelNEU-Tagebuch öffnen</button>
+
+  <div id="nn-modal" role="dialog" aria-modal="true" aria-label="NagelNEU Tagebuch" style="display:none;position:fixed;inset:0;z-index:2147483000;background:rgba(10,6,14,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)">
+    <div style="position:absolute;inset:max(12px,3vh) max(8px,3vw);border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#0d0a12">
+      <iframe id="nn-frame" title="NagelNEU Tagebuch" allow="microphone; clipboard-write; fullscreen" style="width:100%;height:100%;border:0;display:block"></iframe>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    // Adresse deiner NagelNEU-App. Das "#tagebuch" am Ende öffnet direkt das Tagebuch.
+    var NAGELNEU_URL = 'https://nagelneu.github.io/nagelNEU/app/#tagebuch';
+
+    var btn = document.getElementById('nn-open');
+    var modal = document.getElementById('nn-modal');
+    var frame = document.getElementById('nn-frame');
+    var lastFocus = null;
+
+    function open() {
+      lastFocus = document.activeElement;
+      if (!frame.src) frame.src = NAGELNEU_URL;
+      modal.style.display = 'block';
+      document.documentElement.style.overflow = 'hidden';
+      frame.focus();
+    }
+    function close() {
+      modal.style.display = 'none';
+      document.documentElement.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    btn.addEventListener('click', open);
+    // Klick auf den dunklen Rand schließt das Fenster
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.style.display === 'block') close(); });
+    // Das ✕ im Tagebuch meldet sich hier und schließt das Fenster
+    window.addEventListener('message', function (e) { if (e.data && e.data.nagelneu === 'close') close(); });
+  })();
+  </script>
+  <!-- ===================== BIS HIER KOPIEREN ===================== -->
+
+  <h2>So baust du es ein</h2>
+  <ol>
+    <li>Die App liegt bereits auf GitHub Pages unter <code>https://nagelneu.github.io/nagelNEU/app/</code>. Du kannst sie auch zusätzlich auf deinen eigenen Webspace laden.</li>
+    <li>Kopiere den markierten Block aus dieser Datei (Button, Fenster und Skript) an die Stelle deiner Seite, an der der Button erscheinen soll. Bei WordPress geht das mit einem Block „Individuelles HTML“.</li>
+    <li>Bei <code>NAGELNEU_URL</code> ist die GitHub-Adresse schon eingetragen. Liegt die App woanders, trage dort deren Adresse mit <code>#tagebuch</code> am Ende ein.</li>
+  </ol>
+
+  <div class="note">
+    <strong>Wichtig für das Einsprechen:</strong> Das Mikrofon funktioniert nur, wenn deine Seite über <code>https://</code> läuft. Das <code>allow="microphone"</code> im Fenster ist schon gesetzt. Das automatische Mitschreiben klappt in Chrome, Edge und Safari; in anderen Browsern wird die Aufnahme trotzdem gespeichert.
+  </div>
+  <div class="note">
+    <strong>Gut zu wissen:</strong> Wer das Tagebuch zum ersten Mal öffnet, gibt zuerst E-Mail und YouTube-Haken an und richtet kurz sein Profil ein. Danach öffnet sich das Tagebuch direkt beim aktuellen Tag. Alle Einträge bleiben im Browser des Besuchers gespeichert. Liegen App und Webseite auf derselben Domain, bleiben die Einträge auch beim nächsten Besuch erhalten.
+  </div>
+
+  <h2>Deutsch und Englisch</h2>
+  <p>Die App erkennt die Sprache automatisch am Browser und merkt sich die Wahl, wenn jemand unten auf <code>DE | EN</code> tippt. Möchtest du eine Sprache fest vorgeben, hänge sie an die Adresse an:</p>
+  <ul>
+    <li>Deutsch: <code>app/?lang=de#tagebuch</code></li>
+    <li>Englisch: <code>app/?lang=en#tagebuch</code></li>
+  </ul>
+  <p>Für eine englische Seite änderst du zusätzlich den Text auf dem Button, zum Beispiel in „📖 Open my NagelNEU diary“.</p>
+
+  <h2>Chat-Assistent</h2>
+  <p>Unten links in der App sitzt der Chat „Fragen?“. Er beantwortet Fragen auf Deutsch und Englisch, ganz ohne Server. Möchtest du zusätzlich eine KI anbinden, lade <code>server/chat-proxy.php</code> auf einen Webspace mit PHP hoch (GitHub kann kein PHP), trage nur dort deinen Schlüssel ein und setze in <code>app/index.html</code> die volle Adresse bei <code>CHAT_URL</code>. Der Schlüssel steht dann nur auf deinem Server, nie in der App.</p>
+
+  <h2>Direkter Link ohne Fenster</h2>
+  <p>Du kannst das Tagebuch auch einfach verlinken, zum Beispiel in einer E-Mail: <code>https://nagelneu.github.io/nagelNEU/app/#tagebuch</code></p>
+</main>
+</body>
+</html>

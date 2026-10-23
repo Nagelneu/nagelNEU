@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /docs/
+Disallow: /tools/
+Disallow: /server/
+Disallow: /tagebuch-einbetten.html
+
+Sitemap: https://nagelneu.github.io/nagelNEU/sitemap.xml

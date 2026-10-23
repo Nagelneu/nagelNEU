@@ -1,0 +1,119 @@
+{
+ "phaseOfDays": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  1,
+  1,
+  1,
+  1,
+  1,
+  2,
+  2,
+  2,
+  2,
+  2,
+  2,
+  3,
+  3,
+  3,
+  3,
+  3
+ ],
+ "trig": {
+  "3": [
+   0,
+   1
+  ],
+  "5": [
+   1,
+   1
+  ],
+  "8": [
+   2,
+   1
+  ],
+  "11": [
+   0,
+   2
+  ],
+  "13": [
+   1,
+   2
+  ],
+  "15": [
+   2,
+   2
+  ],
+  "17": [
+   0,
+   3
+  ],
+  "19": [
+   1,
+   3
+  ],
+  "20": [
+   2,
+   3
+  ]
+ },
+ "de": {
+  "phases": [
+   "Phase 1 · Knibbler entlarven",
+   "Phase 2 · Hände umprogrammieren",
+   "Phase 3 · Fallen & Rückfall-Schutz",
+   "Phase 4 · Neue Nägel, neues Ich"
+  ],
+  "gen": {
+   "1": "Wie von selbst",
+   "2": "Die Beruhigungs-Lüge",
+   "4": "Die Welle surfen",
+   "6": "Dein Hände-Täschchen",
+   "7": "Woche 1: Zwischenbilanz",
+   "9": "Deine Nägel heilen",
+   "10": "Verbündete & Zeichen",
+   "12": "„Nur die eine Kante“, die gefährlichste Lüge",
+   "14": "Halbzeit: Bilanz und Wiederholung",
+   "16": "Gefühle ohne Knabbern",
+   "18": "Wenn’s doch passiert: Ausrutscher-Protokoll",
+   "21": "Der Nagel-Pass: Tag 21"
+  },
+  "level": [
+   "",
+   "entlarven",
+   "dein Gegenplan",
+   "der Ernstfall"
+  ]
+ },
+ "en": {
+  "phases": [
+   "Phase 1 · Unmask the Nibblers",
+   "Phase 2 · Reprogram your hands",
+   "Phase 3 · Traps & relapse protection",
+   "Phase 4 · New nails, new you"
+  ],
+  "gen": {
+   "1": "All by itself",
+   "2": "The calming lie",
+   "4": "Surf the wave",
+   "6": "Your hand kit",
+   "7": "Week 1: Check-in",
+   "9": "Your nails are healing",
+   "10": "Allies & signals",
+   "12": "“Just that one edge”, the most dangerous lie",
+   "14": "Halfway: review and repeat",
+   "16": "Feelings without nibbling",
+   "18": "If it happens anyway: slip protocol",
+   "21": "The Nail Pass: day 21"
+  },
+  "level": [
+   "",
+   "unmasked",
+   "your counter-plan",
+   "the real test"
+  ]
+ }
+}
